@@ -1,12 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>Wobbly Good</title>
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Wobbly Good</title>
+        <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #word {
+            font-size: 3em;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+        .fade-out {
+            opacity: 0;
+        }
+    </style>
     </head>
-
     <body>
-        <h1>Hello World</h1>
-        <p>I'm Wobbly Good.</p>
+        <div id="word"></div>
+
+        <script>
+        const words = [
+            "Abundant", "Accomplished", "Admire", "Amazing", "Ambitious",
+            "Appreciated", "Awesome", "Beautiful", "Blissful", "Brave",
+            "Brilliant", "Calm", "Capable", "Cheerful", "Confident",
+            "Courageous", "Creative", "Delightful", "Determined", "Dynamic",
+            "Eager", "Efficient", "Empowered", "Encouraging", "Energetic",
+            "Enthusiastic", "Excellent", "Fabulous", "Fantastic", "Flourishing",
+            "Focused", "Fortunate", "Friendly", "Generous", "Genuine",
+            "Grateful", "Happy", "Harmonious", "Hopeful", "Incredible",
+            "Inspired", "Joyful", "Kind", "Knowledgeable", "Lively",
+            "Loving", "Magnificent", "Motivated", "Optimistic", "Outstanding",
+            "Passionate", "Peaceful", "Persistent", "Positive", "Powerful",
+            "Radiant", "Resilient", "Resourceful", "Respectful", "Spectacular",
+            "Strong", "Successful", "Supportive", "Talented", "Thriving",
+            "Trustworthy", "Unique", "Unstoppable", "Vibrant", "Victorious",
+            "Warm", "Wise", "Wonderful", "Worthy", "Zealous"
+        ];
+        const wordElement = document.getElementById('word');
+        let currentIndex = -1;
+
+        function getRandomWord() {
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * words.length);
+            } while (randomIndex === currentIndex);
+            currentIndex = randomIndex;
+            return words[randomIndex];
+        }
+
+        function showWord() {
+            const word = getRandomWord();
+            wordElement.classList.remove('fade-out');
+            wordElement.textContent = word;
+
+            setTimeout(() => {
+                wordElement.classList.add('fade-out');
+            }, 4000); // Start fade out after 4 seconds
+        }
+
+        setInterval(showWord, 5000); // Change word every 5 seconds
+        showWord(); // Show the first word immediately
+    </script>
     </body>
 </html>
